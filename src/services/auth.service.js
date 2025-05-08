@@ -1,37 +1,32 @@
 import axios from "axios";
 
-const API_URL = "https://backend-semana7-coello.onrender.com/api/auth/";
+const api = axios.create({
+  baseURL: "https://backend-semana7-coello.onrender.com/api/auth/",
+});
 
-// Registrar usuario
 const register = (username, email, password) => {
-  return axios.post(API_URL + "signup", {
-    username,
-    email,
-    password,
-  });
+  return api.post("signup", { username, email, password });
 };
 
-// Iniciar sesión
 const login = (username, password) => {
-  return axios
-    .post(API_URL + "signin", {
-      username,
-      password,
-    })
+  return api
+    .post("signin", { username, password })
     .then((response) => {
       if (response.data.accessToken) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
       return response.data;
+    })
+    .catch((error) => {
+      console.error("Error al iniciar sesión:", error.response?.data || error.message);
+      throw error;
     });
 };
 
-// Cerrar sesión
 const logout = () => {
   localStorage.removeItem("user");
 };
 
-// Obtener usuario actual
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
