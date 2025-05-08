@@ -5,7 +5,7 @@ import DashboardModerator from "./pages/dashboardMod";
 import DashboardAdmin from "./pages/dashboardAdmin";
 import Login from "./pages/login";
 import Register from "./pages/register";
-import "./App.css";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
