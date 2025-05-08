@@ -1,5 +1,8 @@
 {
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/index.html" }
+    "routes": [
+      {
+        "src": "/(.*\\.css)",
+        "headers": { "content-type": "text/css" }
+      }
     ]
   }
